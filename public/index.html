@@ -1,26 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="shortcut icon" href="#" type="image/x-icon">
-</head>
-<body>
-<div>dsadsadasdasdsadas</div>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="photo"></div>
+      <h1>Ali Hanafiah</h1>
+      <div class="bio">
+        <table>
+          <caption>
+            Bio Data
+          </caption>
+        </table>
+      </div>
+    </div>
     <script>
-        const body = document.querySelector("div");
+      const table = document.querySelector("table");
+      const caption = document.createElement("caption");
 
-   async function tampil(){
-            const res = await fetch("/api.get");
-            const data = await res.json();
-            const p = document.createElement("p");
-            p.textContent = data.nama ;
-            
-            body.appendChild(p);
+      async function bio() {
+        const res = await fetch("/api/cara-biasa/get");
+        const data = await res.json();
+        for (let bio in data) {
+          const tr = document.createElement("tr");
+          // console.log(data[bio][2]);
+          // data[bio].forEach((e) => {
+          const th = document.createElement("th");
+          const td = document.createElement("td");
+          const td2 = document.createElement("td");
+          th.textContent = data[bio][0];
+          td.textContent = data[bio][1];
+          td2.textContent = data[bio][2];
+
+          tr.appendChild(th);
+          tr.appendChild(td);
+          tr.appendChild(td2);
+          table.appendChild(tr);
         }
-        tampil();
+
+        table.appendChild(caption);
+      }
+      bio();
     </script>
-</body>
+  </body>
 </html>
