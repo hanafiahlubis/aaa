@@ -8,7 +8,7 @@ app.use(express.static("public"));
 const bio = {
     nama : "ali hanafiah"
 }
-app.get("/api.get",(req,res)=>{
+app.get("/api.get",(_req,res)=>{
     res.send(bio)
 });
 
